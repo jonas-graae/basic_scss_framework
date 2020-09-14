@@ -1,88 +1,98 @@
-//Insert font and font weights
-//Insert style for H1 to H6 inclusive mediaqueries
-//Insert style for p and a tags inclusive mediaqueries
-
 //https://www.impactbnd.com/blog/how-font-sizes-effect-ux //*fontstørrelser bør ændeser på mobil og ipad osv :)
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 300;
+
+/*%heading is temp class that are not existing, which only works to @extend
+h tags with styling from %heading (basis styling). H tags are afterwards @extend with 
+individual styles from styling below.   */
+
+%heading  {
+  font-family: $headlines-font-stack;
+  color: $headlines-font-color;
   margin-bottom: 2rem;
   margin-top: 0;
 }
 
-h1 {
+%h1 {
   font-size: 3.2rem;
   line-height: 1.25em;
-}
+  font-weight: map-get($font-weights, "h1");
 
-h2 {
-  font-size: 2.6rem;
-  line-height: 1.16em;
-}
-
-h3 {
-  font-size: 2.2rem;
-  line-height: 1.14em;
-}
-
-h4 {
-  font-size: 1.8rem;
-  letter-spacing: -0.08rem;
-  line-height: 1.11em;
-}
-
-h5 {
-  font-size: 1.7rem;
-  letter-spacing: -0.05rem;
-  line-height: 1.5;
-}
-
-h6 {
-  font-size: 1.6rem;
-  letter-spacing: 0;
-  line-height: 1.4;
-}
-
-@include tablet {
-  h1 {
+  @include tablet {
     font-size: 4rem;
     line-height: 1.25em;
   }
 
-  h2 {
+  @include desktop {
+    font-size: 4.8rem;
+    line-height: 1.05em;
+  }
+}
+
+%h2 {
+  font-size: 2.6rem;
+  line-height: 1.16em;
+  font-weight: map-get($font-weights, "h2");
+
+  @include tablet {
     font-size: 3.2rem;
     line-height: 1.25em;
   }
 
-  h3 {
+  @include desktop {
+    font-size: 3.6rem;
+  }
+}
+
+%h3 {
+  font-size: 2.2rem;
+  line-height: 1.14em;
+  font-weight: map-get($font-weights, "h3");
+
+  @include tablet {
     font-size: 2.4rem;
     line-height: 1.25em;
   }
 
-  h4 {
+  @include desktop {
+    font-size: 2.8rem;
+    line-height: 1.25em;
+  }
+}
+
+%h4 {
+  font-size: 1.8rem;
+  letter-spacing: -0.08rem;
+  line-height: 1.11em;
+  font-weight: map-get($font-weights, "h4");
+
+  @include tablet {
     font-size: 1.8rem;
     letter-spacing: -0.08rem;
     line-height: 1.22em;
   }
 }
 
-@include desktop {
-  h1 {
-    font-size: 4.8rem;
-    line-height: 1.05em;
-  }
+%h5 {
+  font-size: 1.7rem;
+  letter-spacing: -0.05rem;
+  line-height: 1.5;
+  font-weight: map-get($font-weights, "h5");
+}
 
-  h2 {
-    font-size: 3.6rem;
-  }
+%h6 {
+  font-size: 1.6rem;
+  letter-spacing: 0;
+  line-height: 1.4;
+  font-weight: map-get($font-weights, "h6");
+}
 
-  h3 {
-    font-size: 2.8rem;
-    line-height: 1.25em;
+
+// Generates the number of H-tag styling as choosen from $number-of-headlines-to-include
+// H-tag styling is only available if the variable $number-of-headlines-to-include is true (>0)
+@if($number-of-headlines-to-include) {  
+  @for $i from 1 through $number-of-headlines-to-include {
+    h#{$i} {
+      @extend %heading;
+      @extend %h#{$i};
+    }
   }
 }

@@ -1,0 +1,23 @@
+// FONT
+$default-font-stack: helvetica, sans-serif;
+$default-font-size: 1.6em;
+
+//H1-H6 tags is set to $default-font-stack as standard
+$headlines-font-stack: $default-font-stack; 
+
+//Colors
+$default-font-color: #141414;
+$headlines-font-color: $color-black;
+
+//How many H TAGS to include 1= H1, 2= H1, H2 and so on.
+$number-of-headlines-to-include: 4;
+
+//font-weights 
+$font-weights: (
+    h1: 500,
+    h2: 500,
+    h3: 400,
+    h4: 400,
+    h5: 400,
+    h6: 400 
+);
