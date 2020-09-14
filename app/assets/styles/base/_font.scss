@@ -12,74 +12,76 @@ individual styles from styling below.   */
 }
 
 %h1 {
-  font-size: 3.2rem;
+  font-size: map-get($font-sizes, "h1");
   line-height: 1.25em;
   font-weight: map-get($font-weights, "h1");
 
   @include tablet {
-    font-size: 4rem;
+    // code below gets next level in $font-size list $font-size > tablet > h1
+    font-size: map-get(map-get($font-sizes, "tablet"), "h1");
     line-height: 1.25em;
   }
 
+  // code below gets next level in $font-size list $font-size > desktop > h1 
   @include desktop {
-    font-size: 4.8rem;
+    font-size: map-get(map-get($font-sizes, "desktop"), "h1");
     line-height: 1.05em;
   }
 }
 
 %h2 {
-  font-size: 2.6rem;
+  font-size: map-get($font-sizes, "h2");
   line-height: 1.16em;
   font-weight: map-get($font-weights, "h2");
 
   @include tablet {
-    font-size: 3.2rem;
+    font-size: map-get(map-get($font-sizes, "tablet"), "h2");
     line-height: 1.25em;
   }
 
   @include desktop {
-    font-size: 3.6rem;
+    font-size: map-get(map-get($font-sizes, "desktop"), "h2");
   }
 }
 
 %h3 {
-  font-size: 2.2rem;
+  font-size: map-get($font-sizes, "h3");
   line-height: 1.14em;
   font-weight: map-get($font-weights, "h3");
 
   @include tablet {
-    font-size: 2.4rem;
+    font-size: map-get(map-get($font-sizes, "tablet"), "h3");
     line-height: 1.25em;
   }
 
   @include desktop {
-    font-size: 2.8rem;
+    font-size: map-get(map-get($font-sizes, "desktop"), "h3");
     line-height: 1.25em;
   }
 }
 
 %h4 {
-  font-size: 1.8rem;
+  font-size: map-get($font-sizes, "h4");
   letter-spacing: -0.08rem;
   line-height: 1.11em;
   font-weight: map-get($font-weights, "h4");
 
   @include tablet {
-    font-size: 1.8rem;
+    font-size: map-get(map-get($font-sizes, "tablet"), "h4");
     letter-spacing: -0.08rem;
     line-height: 1.22em;
   }
 }
 
 %h5 {
-  font-size: 1.7rem;
+  font-size: map-get($font-sizes, "h5");
   letter-spacing: -0.05rem;
   line-height: 1.5;
   font-weight: map-get($font-weights, "h5");
 }
 
 %h6 {
-  font-size: 1.6rem;
+  font-size: map-get($font-sizes, "h6");
   letter-spacing: 0;
   line-height: 1.4;
   font-weight: map-get($font-weights, "h6");
