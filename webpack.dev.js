@@ -1,11 +1,13 @@
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const MediaQueryPlugin = require('media-query-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+    mode: 'development',
+    devtool: 'source-map',
+
     entry: './app/assets/scripts/App.js',
     output: {
-        filename: 'bundled.js',
+        filename: 'bundle.js',
         path: path.resolve(__dirname, 'app')
     },
 
@@ -27,14 +29,9 @@ module.exports = {
     },
 
     plugins:[
-        new MiniCssExtractPlugin({
-            filename: 'styles.css'
+        new HtmlWebpackPlugin({
+            template: './app/index.html'
         }),
-        // new MediaQueryPlugin({
-        //     queries: {
-        //         '@media screen and (min-width: 720px)' : 'tablet'
-        //     }
-        // })
     ],
 
     module: {
@@ -44,18 +41,14 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [ 
                     'style-loader',
-                    // MiniCssExtractPlugin.loader,
-                    
                     'css-loader?url=false',   
-                    // MediaQueryPlugin.loader,
                     {
                         loader: 'group-css-media-queries-loader'
                     },
                     'sass-loader'
                 ],
-            },
+            }
+            
         ]
     },
-
-    mode: 'development'
 }
